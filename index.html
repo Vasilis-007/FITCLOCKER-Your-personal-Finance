@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0"/>
+    <title>FinTrack / Your personal Finance</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="index.js" defer></script>
+  </head>
+
+  <body>
+    <aside class="sidebar">
+      <h2>◈ FinTrack</h2>
+      <p class="nav active">▦ &nbsp; Overview</p>
+      <p class="nav">↔ &nbsp; Transactions</p>
+      <p class="nav">◷ &nbsp; Budgets</p>
+      <p class="nav">⚙ &nbsp; Settings</p>
+      <div class="side-note">Your money, in focus.</div>
+    </aside>
+
+    <main class="main">
+      <header>
+        <div>
+          <p class="muted">YOUR FINANCES</p>
+          <h1>Dashboard</h1>
+        </div>
+        <p class="avatar">FT</p>
+      </header>
+
+      <section class="summary">
+        <article class="card balance">
+          <p>Total Balance</p>
+          <h2 id="balance">€0.00</h2>
+          <small class="green">Money coming in!</small>
+        </article>
+
+        <article class="card">
+          <p>Total Income</p>
+          <h2 id="income">€0.00</h2>
+          <small class="green">Money coming in</small>
+        </article>
+
+        <article class="card">
+          <p>Total Expenses</p>
+          <h2 id="expenses">€0.00</h2>
+          <small class="red">Money going out</small>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel">
+          <h3>Add a Transaction</h3>
+          <form id="transaction-form">
+            <label for="description">Description</label>
+            <input id="description" placeholder="e.g Grocery Shopping" maxlength="80" required />
+
+            <label for="amount">Amount €</label>
+            <input id="amount" type="number" min="0.01" max="100000000000000000" step="0.01" placeholder="0.00" required />
+
+            <label for="type">Transaction type</label>
+            <select id="type">
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+
+            <label for="category">Category</label>
+            <select id="category">
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Shopping</option>
+              <option>Bills</option>
+              <option>Entertainment</option>
+              <option>Salary</option>
+              <option>Other</option>
+            </select>
+
+            <label for="date">Date</label>
+            <input id="date" type="date" required />
+
+            <button type="submit">+ Add Transaction</button>
+          </form>
+        </article>
+
+        <article class="panel">
+          <h3>Spending Breakdown</h3>
+          <div class="chart-wrap">
+            <canvas id="spending-chart"></canvas>
+          </div>
+
+          <p id="chart-message" class="muted">Add expenses to see your spending</p>
+        </article>
+      </section>
+
+      <section class="panel transaction-panel">
+        <div class="section-heading">
+          <div>
+            <h3>Recent transactions</h3>
+            <p class="muted">Your latest financial activity</p>
+          </div>
+          <span id="transaction-count" class="pill">0 transactions</span>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="transaction-list"></tbody>
+          </table>
+        </div>
+
+        <p id="empty-message" class="muted">No transactions yet. Add your first one above!</p>
+      </section>
+    </main>
+  </body>
+</html>
